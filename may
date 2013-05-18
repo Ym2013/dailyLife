@@ -1,0 +1,62 @@
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class LineMax
+{
+
+    static int[] a = { 0, 13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5,
+            -22, 15, -4, 7, -100, 10 };
+
+    public static void main(String[] args)
+    {
+        f();
+    }
+
+    public static void f()
+    {
+        int lineMax = 0;
+
+        int result = 0;
+
+        int startIndex = 0;
+        List<Integer> startIndexList = new ArrayList<Integer>();
+
+        int endIndex = 0;
+        for (int i = 0; i < a.length; i++)
+        {
+            lineMax += a[i];
+            
+            if (lineMax <= 0)
+            {
+                startIndexList.add(i + 1);
+                lineMax = Math.max(lineMax, 0);
+            }
+
+            if (result <= lineMax)
+            {
+                endIndex = i;
+
+                result = Math.max(result, lineMax);
+            }
+
+        }
+        int size = startIndexList.size();
+
+        for (int i = size - 1; i >= 0; i--)
+        {
+            if (endIndex >= startIndexList.get(i))
+            {
+                startIndex = startIndexList.get(i);
+                break;
+            }
+        }
+
+        System.out.println(startIndex);
+        System.out.println(endIndex);
+        System.out.println(result);
+    }
+}
