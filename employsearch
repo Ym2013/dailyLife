@@ -1,0 +1,22 @@
+var url = 'http://home.asiainfo.com/AIPRT/Home/GetUserListForChild';
+
+var search  = function(start,end){ 
+	 var data = {} ; 
+     for(var i = start ;i <=end ; i ++){
+           
+         data.employeeNo = i ; 
+         $.ajax({
+              url:url,
+              data:data,
+              type:'post',
+              dataType:'json',
+              success:function(data){
+                 if(data.total > 0){
+                    console.log(data.data[0]);
+                  }
+                
+              }
+
+           })
+     }
+}
